@@ -25,7 +25,8 @@ class AuthController extends Controller
     ]);
     $user->save();
     return response()->json([
-      'message' => 'Successfully created user!'
+      'message' => 'Successfully created user!',
+      'success' => true
     ], 201);
   }
   public function register(Request $request)
