@@ -1,0 +1,123 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/api/example/{id}": {
+            "post": {
+                "summary": "具体例が無かったので寄せ集めてみた",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "パスからのパラメータ例",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "queryString",
+                        "in": "query",
+                        "description": "クエリーストリングからのパラメータ例",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "number",
+                                    "text"
+                                ],
+                                "properties": {
+                                    "number": {
+                                        "description": "リクエストボディのjsonのプロパティの例",
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "example": 1
+                                    },
+                                    "text": {
+                                        "description": "リクエストボディのjsonのプロパティの例",
+                                        "type": "string",
+                                        "example": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "レスポンスボディjsonパラメータの例",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "レスポンスボディjsonパラメータの例",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "レスポンスボディjsonパラメータの例",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "レスポンスボディjsonパラメータの例",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
