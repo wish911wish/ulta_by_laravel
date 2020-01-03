@@ -8,18 +8,29 @@ import NotFound from './views/NotFound/NotFound';
 // User is LoggedIn
 import PrivateRoute from './PrivateRoute'
 import Dashboard from './views/user/Dashboard/Dashboard';
+import Event from './Views/Event/Event';
 
 const Main = props => (
 <Switch>
   {/*User might LogIn*/}
-  <Route exact path='/' component={Home}/>
+  <Route exact path='/'>
+    <Home />
+  </Route>
   {/*User will LogIn*/}
-  <Route path='/login' component={Login}/>
-  <Route path='/register' component={Register}/>
+  <Route path='/login'>
+    <Login />
+  </Route>
+  <Route path='/register'>
+    <Register />
+  </Route>
+  <Route path='/event'>
+    <Event />
+  </Route>
   {/* User is LoggedIn*/}
-  <PrivateRoute path='/dashboard' component={Dashboard}/>
+  <PrivateRoute path='/event'>
+    <Event />
+  </PrivateRoute>
   {/*Page Not Found*/}
-  <Route component={NotFound}/>
 </Switch>
 );
 

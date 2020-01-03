@@ -1,35 +1,27 @@
 import React from 'react';
 import {Redirect, Route, withRouter} from 'react-router-dom';
-// 3.1
-const state_of_state = localStorage["appState"];
-if (!state_of_state){
-  const appState = {
-    isLoggedIn: false,
-    user: {}
-  };
-  localStorage["appState"] = JSON.stringify(appState);
-}
-const state = localStorage["appState"];
-const AppState = JSON.parse(state);
-// 3.2
-const Auth = {
-  isLoggedIn: AppState.isLoggedIn,
-  user: AppState
+export default function PrivateRoute ({ children, ...rest }) {
+  console.log('PrivateRoute')
+  console.log(children)
+  console.log(location)
+  return (
+    <Route
+    {...rest}
+    render={({ location }) =>
+      true ? (
+        children
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: { from: location }
+          }}
+        />
+      )
+    }
+  />
+  )
 };
-// 3.3
-const PrivateRoute = ({ component: Component, path, ...rest }) => (
-<Route path={path}
-       {...rest}
-       render={props => Auth.isLoggedIn ? (
-       <Component {...props} />) : (<Redirect to={{
-       pathname: "/login",
-       state: {
-         prevLocation: path,
-         error: "You need to login first!",
-       },
-      }}
-      />
-    )
-  }
-/>);
-export default withRouter(PrivateRoute);
+
+// onClickとかで遷移が発生しなかったら  ↓のwith Routerを使ってみる
+// export default withRouter(PrivateRoute);
