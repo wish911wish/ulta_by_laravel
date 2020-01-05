@@ -25,3 +25,10 @@ Route::group([
     Route::get('find/{token}', 'PasswordResetController@find');
     Route::post('reset', 'PasswordResetController@reset');
 });
+
+Route::group([
+    'middleware' => 'event'
+],
+function () {
+    Route::apiResource('events', 'API\EventsController');
+});
