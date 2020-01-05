@@ -13,7 +13,7 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
@@ -31,6 +31,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('events');
     }
 }
