@@ -14,10 +14,10 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->Middleware('auth:api', ['except' => ['login']]);
-    }
+    // public function __construct()
+    // {
+    //     $this->Middleware('auth:api');
+    // }
 
     /**
      * Create a User data
@@ -45,6 +45,17 @@ class AuthController extends Controller
             'success' => true
         ], 201);
     }
+
+    /**
+     * Create a User data
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function preflight(Request $request)
+    {
+        return response()->json();
+    }
+
 
     /**
     * Get a JWT via given credentials.

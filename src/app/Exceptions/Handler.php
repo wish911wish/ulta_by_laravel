@@ -4,9 +4,30 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException as TokenExpiredException;
 
 class Handler extends ExceptionHandler
 {
+
+    /**
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception $e
+     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
+     *
+     */
+    public function render($request, Exception $e)
+    {
+        if ($e instanceof TokenExpiredException) {
+            return response()->json(['token_expired'], $e->getStatusCode());
+        } else if ($e instanceof Tymon\JWTAuth\Exceptions\TokenInvalidException) {
+            return response()->json(['token_invalid'], $e->getStatusCode());
+        }
+    
+        return parent::render($request, $e);
+    }
+
+
     /**
      * A list of the exception types that are not reported.
      *
